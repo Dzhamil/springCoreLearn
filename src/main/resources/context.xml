@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-init-method="initObject"
+       default-destroy-method="destroyObject"
+>
+
+    <bean id="t1000" class="impls.robot.ModelT1000" scope="prototype"
+          p:hand-ref="toshibaHand"
+          p:leg-ref="sonyLeg"
+          p:head-ref="toshibaHead"
+          c:_0="silver"
+          c:_1="2005"
+          c:_2="true"
+          init-method="initObject"
+          destroy-method="destroyObject"
+    />
+
+    <bean id="t1000Empty" class="impls.robot.ModelT1000"
+          c:_0-ref="sonyHand"
+          c:_1-ref="sonyLeg"
+          c:_2-ref="toshibaHead"
+    />
+
+    <bean id="t1000Full" class="impls.robot.ModelT1000" scope="prototype"
+          c:_0-ref="toshibaHand"
+          c:_1-ref="toshibaLeg"
+          c:_2-ref="sonyHead"
+          c:_3="Black"
+          c:_4="28"
+          c:_5="false"
+    />
+
+    <bean id="sonyHand" class="impls.sony.SonyHand"/>
+    <bean id="sonyHead" class="impls.sony.SonyHead"/>
+    <bean id="sonyLeg" class="impls.sony.SonyLeg"/>
+
+    <bean id="toshibaHand" class="impls.toshiba.ToshibaHand"/>
+    <bean id="toshibaHead" class="impls.toshiba.ToshibaHead"/>
+    <bean id="toshibaLeg" class="impls.toshiba.ToshibaLeg"/>
+</beans>
