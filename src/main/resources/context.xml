@@ -4,6 +4,7 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:c="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true"
        default-init-method="initObject"
        default-destroy-method="destroyObject"
 >
@@ -15,8 +16,6 @@
           c:_0="silver"
           c:_1="2005"
           c:_2="true"
-          init-method="initObject"
-          destroy-method="destroyObject"
     />
 
     <bean id="t1000Empty" class="impls.robot.ModelT1000"
@@ -25,7 +24,7 @@
           c:_2-ref="toshibaHead"
     />
 
-    <bean id="t1000Full" class="impls.robot.ModelT1000" scope="prototype"
+    <bean id="t1000Full" class="impls.robot.ModelT1000"
           c:_0-ref="toshibaHand"
           c:_1-ref="toshibaLeg"
           c:_2-ref="sonyHead"
@@ -41,4 +40,5 @@
     <bean id="toshibaHand" class="impls.toshiba.ToshibaHand"/>
     <bean id="toshibaHead" class="impls.toshiba.ToshibaHead"/>
     <bean id="toshibaLeg" class="impls.toshiba.ToshibaLeg"/>
+<!--    <bean class="main.MyBeanPostProcessor"/>-->
 </beans>

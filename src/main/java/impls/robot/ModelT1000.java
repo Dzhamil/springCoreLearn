@@ -1,15 +1,21 @@
 package impls.robot;
 
+import impls.toshiba.ToshibaHand;
 import interfaces.Hand;
 import interfaces.Head;
 import interfaces.Leg;
 import interfaces.Robot;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
-public class ModelT1000 implements Robot {
+public class ModelT1000 implements Robot, InitializingBean, DisposableBean {
 
 	private Hand hand;
 	private Leg leg;
@@ -56,16 +62,26 @@ public class ModelT1000 implements Robot {
 		System.out.println("can play sound: " + soundEnabled);
 	}
 
-	private void initObject() {
-		System.out.println("init");
+	@Override
+	public void dance() {
+		System.out.println("T1000 is dancing!");
 	}
 
-	private void destroyObject() {
+	@Override
+	public void destroy() throws Exception {
 		System.out.println("destroy");
 	}
 
 	@Override
-	public void dance() {
-		System.out.println("T1000 is dancing!");
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("init");
+	}
+
+	public void initObject() {
+		System.out.println("initObject");
+	}
+
+	public void destroyObject() {
+		System.out.println("destroyObject ");
 	}
 }
