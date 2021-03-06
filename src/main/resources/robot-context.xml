@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true"
+       default-init-method="initObject"
+       default-destroy-method="destroyObject"
+>
+
+    <import resource="sony-context.xml"/>
+    <import resource="toshiba-context.xml"/>
+    <import resource="db-context.xml"/>
+
+    <bean id="baseModel" class="impls.robot.BaseModel" abstract="true"
+          c:_0-ref="sonyHand"
+          c:_1-ref="sonyLeg"
+          c:_2-ref="toshibaHead"
+    />
+
+    <bean id="t1000Base" class="impls.robot.ModelT1000"
+          parent="baseModel"
+    />
+
+    <bean id="t1000Full" class="impls.robot.ModelT1000" scope="prototype"
+          parent="baseModel"
+          c:_3="silver"
+          c:_4="2005"
+          c:_5="true"
+          depends-on="databaseBean"
+    />
+
+    <bean id="t1000" class="impls.robot.ModelT1000"
+          c:_0="Black"
+          c:_1="28"
+          c:_2="false"
+    />
+
+
+
+    <bean class="main.MyBeanPostProcessor"/>
+</beans>

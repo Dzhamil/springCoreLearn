@@ -1,45 +1,31 @@
 package impls.robot;
 
-import impls.toshiba.ToshibaHand;
 import interfaces.Hand;
 import interfaces.Head;
 import interfaces.Leg;
-import interfaces.Robot;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Getter
 @Setter
-public class ModelT1000 implements Robot, InitializingBean, DisposableBean {
-
-	private Hand hand;
-	private Leg leg;
-	private Head head;
+public class ModelT1000 extends BaseModel implements  InitializingBean, DisposableBean {
 
 	private String color;
 	private int year;
 	private boolean soundEnabled;
 
 	public ModelT1000() {
+		super();
 	}
 
 	public ModelT1000(Hand hand, Leg leg, Head head) {
-		super();
-		this.hand = hand;
-		this.leg = leg;
-		this.head = head;
+		super(hand, leg, head);
 	}
 
 	public ModelT1000(Hand hand, Leg leg, Head head, String color, int year, boolean soundEnabled) {
-		super();
-		this.hand = hand;
-		this.leg = leg;
-		this.head = head;
+		super(hand, leg, head);
 		this.color = color;
 		this.year = year;
 		this.soundEnabled = soundEnabled;
@@ -54,9 +40,16 @@ public class ModelT1000 implements Robot, InitializingBean, DisposableBean {
 
 	@Override
 	public void action() {
-		head.calc();
-		hand.catchSomething();
-		leg.go();
+		Head head = getHead();
+		Hand hand = getHand();
+		Leg leg = getLeg();
+		if (head != null && hand != null && leg != null) {
+			getHead().calc();
+			getHand().catchSomething();
+			getLeg().go();
+		} else {
+			System.out.println("this is not base model");
+		}
 		System.out.println("color: " + color);
 		System.out.println("year: " + year);
 		System.out.println("can play sound: " + soundEnabled);
